@@ -1,6 +1,4 @@
-# mediawiki-skins-lift
-
-MediaWiki Lift skin
+MediaWiki skin Lift
 ========================
 
 The Lift skin is an example of how to take advantage of the SkinMustache class in your mediawiki instance.
@@ -22,4 +20,4 @@ The following configuration options apply only to the skin Lift.
 * Type: `Integer`
 * Default: 3600
 
-The amount of time in seconds to clear out the users online table.
+The amount of time (in seconds) that a user's visit expires in the users online table.
