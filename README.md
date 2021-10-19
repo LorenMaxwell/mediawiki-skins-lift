@@ -1,4 +1,4 @@
-MediaWiki skin Lift
+MediaWiki Lift skin
 ========================
 
 The Lift skin is an example of how to take advantage of the SkinMustache class in your mediawiki instance.
