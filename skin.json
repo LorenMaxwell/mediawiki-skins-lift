@@ -1,0 +1,77 @@
+{
+	"name": "Lift",
+	"version": "1.0.0",
+	"author": "Loren Maxwell",
+	"url": "https://www.mediawiki.org/wiki/Skin:Lift",
+	"descriptionmsg": "lift-desc",
+	"namemsg": "skinname-lift",
+	"license-name": "CC0-1.0",
+	"type": "skin",
+	"requires": {
+		"MediaWiki": ">= 1.36.0"
+	},
+	"ValidSkinNames": {
+		"lift": {
+			"class": "SkinLift",
+			"args": [ {
+				"name": "Lift",
+				"templateDirectory": "skins/Lift/templates",
+				"messages": [
+				],
+				"styles": [
+					"skins.lift.css"
+				],
+				"scripts": [
+					"skins.lift.js"
+				]
+			} ]
+		}
+	},
+	"AutoloadClasses": {
+		"SkinLift": "includes/SkinLift.php",
+		"LiftHooks": "includes/LiftHooks.php"
+	},
+	"config": {
+		"UsersOnlineTimeout": 3600
+	},
+	"Hooks": {
+		"BeforeInitialize": "LiftHooks::onBeforeInitialize",
+        "SkinTemplateNavigation::Universal": "LiftHooks::onSkinTemplateNavigation_Universal"
+    },
+	"MessagesDirs": {
+		"Lift": [
+			"i18n"
+		]
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "resources"
+	},
+	"ResourceModules": {
+		"skins.lift.css": {
+			"class": "ResourceLoaderSkinModule",
+			"features": {
+				"normalize": true,
+				"elements": true,
+				"content": true,
+				"content-parser-output": true,
+				"interface": true,
+				"logo": true
+			},
+			"styles": [
+			    "bootstrap/css/bootstrap.min.css",
+			    "hover/css/hover-min.css",
+			    "animate/animate.min.css",
+			    "font_roboto.css",
+			    "lift.css"
+			]
+		},
+		"skins.lift.js": {
+			"scripts": [
+			    "bootstrap/js/bootstrap.bundle.min.js",
+			    "fontawesome/js/all.min.js",
+			    "lift.js"
+			]
+		}
+	},
+	"manifest_version": 1
+}

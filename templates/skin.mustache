@@ -1,0 +1,46 @@
+{{>header}}
+
+<div id="mw-wrapper" class="container-xxl pt-5 mt-5">
+	<div class="mw-body" id="content" role="main">
+		<div id="siteNotice">{{{html-site-notice}}}</div>
+		{{{html-user-message}}}
+		<div class="mw-indicators mw-body-content">
+		{{#array-indicators}}
+		<div id="{{id}}" class="{{class}}">{{{html}}}</div>
+		{{/array-indicators}}
+		</div>
+		<h1 class="firstHeading" {{{html-user-language-attributes}}}>{{{html-title}}}</h1>
+		<div id="siteSub">{{msg-tagline}}</div>
+		<div class="mw-body-content">
+			<div id="contentSub">
+				{{{html-subtitle}}}
+				{{{html-undelete-link}}}
+			</div>
+            {{>pagemenu}}
+			{{{html-body-content}}}
+            {{#html-categories}}
+            <div class="card border-primary mt-5">
+              <div class="card-header"><a href="/w/Special:Categories" class="alert-link">Categories</a></div>
+              <div class="card-body">
+                <ul class="list-group list-group-horizontal d-flex flex-wrap small">
+                {{#array-links}}
+                    <li class="list-group-item bg-none py-1"><a href="{{href}}" class="{{#unless exists}} new {{/unless}}">{{text}}</a></li>
+                {{/array-links}}
+                </ul>
+              </div>
+            </div>
+            {{/html-categories}}
+
+		</div>
+		{{{html-after-content}}}
+	</div>
+    <footer id="footer" class="container-fluid border-top my-5 bg-white" {{{html-user-language-attributes}}}>
+    	{{#data-footer}}
+    	{{!}}{{#data-info}}{{>FooterList}}{{/data-info}}
+    	{{!}}<div id="footer-list" class="d-flex flex-wrap justify-content-between d-print-none">
+    	{{!}}{{#data-places}}{{>FooterList}}{{/data-places}}
+    	{{!}}{{#data-icons}}{{>FooterList}}{{/data-icons}}
+    	{{!}}</div>
+    	{{/data-footer}}
+    </footer>
+</div>

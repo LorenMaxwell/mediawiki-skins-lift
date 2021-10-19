@@ -1,0 +1,156 @@
+<!-- header starts -->
+<header class="container-fluid fixed-top bg-white border-bottom d-print-none">
+	<nav class="navbar navbar-expand navbar-light py-0">
+		<div class="container-fluid flex-wrap flex-sm-nowrap">
+            <div class="navbar-collapse w-100 justify-content-between justify-content-sm-start">
+                
+                {{! Logo}}
+                <div class="navbar-brand py-0">
+                	<div id="p-logo" role="banner">
+                		<a href="{{link-mainpage}}">
+                		{{#data-logos}}
+                		{{#icon}}<img src="{{.}}" height="45">{{/icon}}
+                		{{/data-logos}}
+                		</a>
+                	</div>
+                </div>
+                
+                {{! Navigation}}
+                {{#data-portlets.data-navigation}}
+                    <div class="dropdown">
+                    <a class="btn{{#class}} {{.}}{{/class}}" href="#" role="button" id="{{id}}" title="{{label}}" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-sitemap fa-fw"></i>
+                    </a>
+                      <ul class="dropdown-menu" aria-labelledby="{{id}}">
+                          {{#array-sections}}
+                                <li><span class="dropdown-header bg-light fs-6 fw-bold">{{label}}</span></li>
+                                {{#array-links}}<li><a id="{{id}}" class="dropdown-item{{#class}} {{.}}{{/class}}" href="{{href}}">{{text}}</a></li>{{/array-links}}
+                          {{/array-sections}}
+                      </ul>
+                    </div>
+                {{/data-portlets.data-navigation}}
+                
+                {{! Search}}
+                {{#data-search-box}}
+                <form action="{{form-action}}" role="search" class="mw-portlet border-start w-100 mx-3" id="p-search">
+                    <div class="form-floating">
+                        <input type="search" name="search" autocapitalize="sentences" class="form-control border-0" id="searchInput" placeholder="{{msg-search}}">
+                        <label for="searchInput">{{msg-search}}</label>
+                        <div class="d-none">{{{html-button-search}}}</div>
+                    </div>
+                </form>
+                {{/data-search-box}}
+                
+    		</div>
+            <div class="navbar-collapse justify-content-end">
+    
+                {{! Toolbox}}
+                {{#data-portlets.data-toolbox}}
+                    <div class="dropdown">
+                    <a class="btn{{#class}} {{.}}{{/class}}" href="#" role="button" id="{{id}}" title="{{label}}" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-tools fa-fw"></i>
+                    </a>
+                      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="{{id}}">
+                        {{#each array-links}}
+                            {{#unless login}}
+                                {{#unless logout}}
+                                    {{#each .}}<li><a id="{{single-id}}" class="dropdown-item{{#class}} {{.}}{{/class}}" href="{{href}}">{{text}}</a></li>{{/each}}
+                                {{/unless}}
+                            {{/unless}}
+                        {{/each}}
+                      </ul>
+                    </div>
+                {{/data-portlets.data-toolbox}}
+                
+                {{! Personal menu}}
+                {{#data-portlets.data-personal}}
+                    <div class="dropdown">
+                    <a class="btn{{#class}} {{.}}{{/class}}" href="#" role="button" id="{{id}}" title="{{label}}" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user fa-fw"></i>
+                    </a>
+                      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="{{id}}">
+                        {{#each array-links}}
+                            {{#unless login}}
+                                {{#unless logout}}
+                                    {{#each .}}<li><a id="{{single-id}}" class="dropdown-item{{#class}} {{.}}{{/class}}" href="{{href}}">{{text}}</a></li>{{/each}}
+                                {{/unless}}
+                            {{/unless}}
+                        {{/each}}
+                      </ul>
+                    </div>
+                {{/data-portlets.data-personal}}
+
+                {{! Users online}}
+                {{#data-extension-portlets.data-online}}
+                <a class="btn position-relative" title="Members online" data-bs-toggle="offcanvas" href="#membersOnline" role="button" aria-controls="membersOnline">
+                  <i class="fas fa-users fa-fw" aria-hidden="true"></i>
+                  <span class="position-absolute top-0 translate-middle badge rounded-pill bg-primary">{{data-extension-portlets.data-online.online}}<span class="visually-hidden">members online</span>
+                  </span>
+                </a>
+                {{/data-extension-portlets.data-online}}
+                
+                {{! Separate login/logout button}}
+                {{#data-portlets.data-personal.array-links}}
+                    {{#if login}}
+                        {{#each .}}
+                            <a class="btn{{#class}} {{.}}{{/class}}" title="{{text}}" href="{{href}}" role="button"><i class="fas fa-sign-in-alt fa-fw"></i></a>
+                        {{/each}}
+                    {{/if}}
+                {{/data-portlets.data-personal.array-links}}
+                {{#data-portlets.data-personal.array-links}}
+                    {{#if logout}}
+                        {{#each .}}
+                            <a class="btn{{#class}} {{.}}{{/class}}" title="{{text}}" href="{{href}}" role="button"><i class="fas fa-sign-out-alt fa-fw"></i></a>
+                        {{/each}}
+                    {{/if}}
+                {{/data-portlets.data-personal.array-links}}
+                
+            </div>
+        </div>
+    </nav>
+</header>
+<!-- header ends -->
+
+<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="membersOnline" aria-labelledby="membersOnlineLabel">
+   <div class="offcanvas-header">
+      <h3 class="offcanvas-title" id="membersOnlineLabel">Members online</h3>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+   </div>
+   <div class="offcanvas-body">
+      {{#data-extension-portlets.data-online}}
+      <div class="card border-primary">
+         <div class="card-header bg-primary text-white">Currently online (past five minutes)</div>
+         <ul class="list-group list-group-flush ms-0">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+               <span><i class="fas fa-users fa-fw"></i> Members</span>
+               <span>{{online}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+               <span><i class="fal fa-users fa-fw"></i> Guests</span>
+               <span>{{guests}}</span>
+            </li>
+         </ul>
+         <div class="card-header bg-primary text-white">Members currently online</div>
+         <ul  class="list-group list-group-flush m-0">
+            {{#members.array-currently}}
+            <li class="list-group-item">
+               <div><a href="{{user_page}}">{{user_name}}</a></div>
+               <div class="text-muted fst-italic fs-xs" aria-hidden="true">Started a session {{online_since}}</div>
+               <div class="text-muted fst-italic fs-xs">Last viewed <a href="{{lastLinkURL}}">{{lastPageTitle}}</a> {{ago}}</div>
+            </li >
+            {{/members.array-currently}}
+         </ul >
+         <div class="card-header bg-primary text-white">Members recently online (last 24 hours)</div>
+         <div class="list-group">
+            {{#members.array-recently}}
+            <li class="list-group-item">
+               <div><a href="{{user_page}}">{{user_name}}</a></div>
+               <div class="text-muted fst-italic fs-xs" aria-hidden="true">Ended a session {{offline_since}}</div>
+               <div class="text-muted fst-italic fs-xs">Last viewed <a href="{{lastLinkURL}}">{{lastPageTitle}}</a> {{ago}}</div>
+            </li >
+            {{/members.array-recently}}
+         </div>
+      </div>
+      {{/data-extension-portlets.data-online}}
+   </div>
+</div>

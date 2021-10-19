@@ -1,0 +1,26 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.fs-sm {
+    font-size:.875rem;
+}
+.fs-xs {
+    font-size:.75rem;
+}
+.fs-xxs {
+    font-size:.625rem;
+}
+
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+.nav-item {
+    margin-bottom: 0;
+}
+.nav {
+    margin: 0;
+}
