@@ -7,6 +7,7 @@ Installation
 ------------
 
 See <https://www.mediawiki.org/wiki/Skin:Lift>
+See also the Development guide that explains how this skin was made using MediaWiki's SkinMustache class: https://www.mediawiki.org/wiki/Skin:Lift/Development_guide
 
 Development
 -----------
