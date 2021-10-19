@@ -15,6 +15,7 @@
 			"class": "SkinLift",
 			"args": [ {
 				"name": "Lift",
+				"responsive" : true,
 				"templateDirectory": "skins/Lift/templates",
 				"messages": [
 				],
