@@ -89,21 +89,17 @@
                 </a>
                 {{/data-extension-portlets.data-online}}
                 
-                {{! Separate login/logout button}}
-                {{#data-portlets.data-personal.array-links}}
-                    {{#if login}}
-                        {{#each .}}
-                            <a class="btn{{#class}} {{.}}{{/class}}" title="{{text}}" href="{{href}}" role="button"><i class="fas fa-sign-in-alt fa-fw"></i></a>
-                        {{/each}}
-                    {{/if}}
-                {{/data-portlets.data-personal.array-links}}
-                {{#data-portlets.data-personal.array-links}}
-                    {{#if logout}}
-                        {{#each .}}
-                            <a class="btn{{#class}} {{.}}{{/class}}" title="{{text}}" href="{{href}}" role="button"><i class="fas fa-sign-out-alt fa-fw"></i></a>
-                        {{/each}}
-                    {{/if}}
-                {{/data-portlets.data-personal.array-links}}
+                {{! Login/logout}}
+                {{#data-portlets.data-login.array-links}}
+                    {{#each .}}
+                        <a class="btn{{#class}} {{.}}{{/class}}" title="{{text}}" href="{{href}}" role="button"><i class="fas fa-sign-in-alt fa-fw"></i></a>
+                    {{/each}}
+                {{/data-portlets.data-login.array-links}}
+                {{#data-portlets.data-logout.array-links}}
+                    {{#each .}}
+                        <a class="btn{{#class}} {{.}}{{/class}}" title="{{text}}" href="{{href}}" role="button"><i class="fas fa-sign-out-alt fa-fw"></i></a>
+                    {{/each}}
+                {{/data-portlets.data-logout.array-links}}
                 
             </div>
         </div>
