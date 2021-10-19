@@ -110,6 +110,30 @@ class SkinLift extends SkinMustache {
         // Undo the key order effects of the above unset on the key
         $data['data-portlets']['data-views']['array-links'] = array_values($data['data-portlets']['data-views']['array-links']);
 
+        // Move login/logout to own portlet
+        $data['data-portlets']['data-login'] = [
+            'id' => "p-login",
+            'class' => "mw-portlet mw-portlet-login",
+            'html-tooltip' => "",
+            'html-after-portal' => "",
+            'array-links' => []
+        ];
+        foreach ($data['data-portlets']['data-personal']['array-links'] as $key => $link) {
+            if (in_array(key($data['data-portlets']['data-personal']['array-links'][$key]), ['login', 'logout'])) {
+                array_unshift($data['data-portlets']['data-login']['array-links'], $link);
+                unset($data['data-portlets']['data-personal']['array-links'][$key]);
+            }
+        } unset($key); unset($link);
+        // Undo the key order effects of the above unset on the key
+        $data['data-portlets']['data-personal']['array-links'] = array_values($data['data-portlets']['data-personal']['array-links']);
+
+        // Clean out all empty data-portlets
+        foreach ($data['data-portlets'] as $key => $portlet) {
+            if (empty($portlet['array-links']) && empty($portlet['array-sections']) ) {
+                unset($data['data-portlets'][$key]);
+            }
+        } unset($portlet);
+        
         $data += $this->additionalTemplateData;
         return $data;
     }
