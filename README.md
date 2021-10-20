@@ -16,4 +16,4 @@ See also the Development guide that explains how this skin was made using MediaW
 Compatable Extensions
 ---------------------
 
-Automatically works with Users Online extension
+Automatically works with Users Online extension: https://github.com/LorenMaxwell/mediawiki-extensions-usersonline
