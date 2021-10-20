@@ -29,17 +29,8 @@
 		}
 	},
 	"AutoloadClasses": {
-		"SkinLift": "includes/SkinLift.php",
-		"LiftHooks": "includes/LiftHooks.php"
+		"SkinLift": "includes/SkinLift.php"
 	},
-	"config": {
-		"LiftOnline": false,
-		"UsersOnlineTimeout": 3600
-	},
-	"Hooks": {
-		"BeforeInitialize": "LiftHooks::onBeforeInitialize",
-        "SkinTemplateNavigation::Universal": "LiftHooks::onSkinTemplateNavigation_Universal"
-    },
 	"MessagesDirs": {
 		"Lift": [
 			"i18n"
