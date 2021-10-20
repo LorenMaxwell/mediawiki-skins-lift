@@ -1,7 +1,9 @@
 {
 	"@metadata": {
-		"authors": [ "..." ]
+		"authors": [
+		    "Loren Maxwell"
+		]
 	},
-	"skinname-example": "{{optional}}",
-	"example-desc": "{{desc|what=skin|name=Example|url=https://www.mediawiki.org/wiki/Skin:Example}}"
+	"skinname-lift": "Lift skin",
+	"lift-desc": "Lift skin"
 }
