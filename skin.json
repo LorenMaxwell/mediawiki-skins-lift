@@ -33,6 +33,7 @@
 		"LiftHooks": "includes/LiftHooks.php"
 	},
 	"config": {
+		"LiftOnline": false,
 		"UsersOnlineTimeout": 3600
 	},
 	"Hooks": {

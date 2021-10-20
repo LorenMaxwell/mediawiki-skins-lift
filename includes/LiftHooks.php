@@ -188,7 +188,10 @@ class LiftHooks {
 	 * Update users online data
 	*/ 
 	public static function onBeforeInitialize( \Title &$title, $unused, \OutputPage $output, \User $user, \WebRequest $request, \MediaWiki $mediaWiki ) {
-        
+		$isEnabled = $output->getConfig()->get( 'LiftOnline' );
+		if ( !$isEnabled ) {
+			return;
+		}
 		// Delete old visitors
 		LiftHooks::deleteOldVisitors();
 
@@ -250,9 +253,11 @@ class LiftHooks {
 	 * Pass users online data to skin
 	 */
 	public static function onSkinTemplateNavigation_Universal( $skin, &$links ) {
-	    
+		$isEnabled = $skin->getConfig()->get( 'LiftOnline' );
+		if ( !$isEnabled ) {
+			return;
+		}
 		if (method_exists($skin, 'setTemplateVariable')) {
-
             // Online
     		$portlet['data-extension-portlets']['data-online'] = [];
     		
