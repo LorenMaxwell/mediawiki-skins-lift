@@ -16,7 +16,7 @@ class SkinLift extends SkinMustache {
     private function array_merge_recursive_distinct( array &$array1, array &$array2 ) {
       $merged = $array1;
     
-      foreach ( $array2 as $key => &$value )
+      foreach ( $array2 ?? [] as $key => &$value )
       {
         if ( is_array ( $value ) && isset ( $merged [$key] ) && is_array ( $merged [$key] ) )
         {
@@ -43,7 +43,7 @@ class SkinLift extends SkinMustache {
 #        unset($data['html-items']);
 
 		// Sanitize and standardize links
-		foreach ( $urls as $key => $item ) {
+		foreach ( $urls ?? [] as $key => $item ) {
 		    
 		    $item['text'] ??= (!is_int($key) ? wfMessage( $key )->text() : '');
             $className = $item['class'] ?? [];
@@ -158,7 +158,7 @@ class SkinLift extends SkinMustache {
 
         $cats = $this->getOutput()->getCategories();
         $catLinks = [];
-        foreach ($cats as $cat) {
+        foreach ($cats ?? [] as $cat) {
             $catTitle = Title::makeTitleSafe( NS_CATEGORY, $cat );
             $catLinks['array-links'][] = [
                 'text' => $catTitle->getText(),
