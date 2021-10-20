@@ -96,12 +96,12 @@ class SkinLift extends SkinMustache {
             $data['data-portlets']['data-navigation']['label'] = 'Site navigation';
             $data['data-portlets']['data-navigation']['array-sections'][] = $data['data-portlets-sidebar']['data-portlets-first'];
             
-            foreach ($data['data-portlets-sidebar']['array-portlets-rest'] as &$portlet) {
+            foreach ($data['data-portlets-sidebar']['array-portlets-rest'] ?? [] as &$portlet) {
                 $data['data-portlets']['data-navigation']['array-sections'][] = $portlet;
             } unset($portlet);
             
-            foreach ($data['data-portlets']['data-navigation']['array-sections'] as &$section) {
-                foreach ($section['array-links'] as $key => &$link) {
+            foreach ($data['data-portlets']['data-navigation']['array-sections'] ?? [] as &$section) {
+                foreach ($section['array-links'] ?? [] as $key => &$link) {
                     $section['array-links'][$key] = $link[key($link)];
                 } unset($link);
             } unset($section);
@@ -129,17 +129,17 @@ class SkinLift extends SkinMustache {
             'html-after-portal' => "",
             'array-links' => []
         ];
-        foreach ($data['data-portlets']['data-personal']['array-links'] as $key => $link) {
+        foreach ($data['data-portlets']['data-personal']['array-links'] ?? [] as $key => $link) {
             if (in_array(key($data['data-portlets']['data-personal']['array-links'][$key]), ['login', 'logout'])) {
                 array_unshift($data['data-portlets']['data-login']['array-links'], $link);
                 unset($data['data-portlets']['data-personal']['array-links'][$key]);
             }
         } unset($key); unset($link);
         // Undo the key order effects of the above unset on the key
-        $data['data-portlets']['data-personal']['array-links'] = array_values($data['data-portlets']['data-personal']['array-links']);
+        $data['data-portlets']['data-personal']['array-links'] = array_values($data['data-portlets']['data-personal']['array-links'] ?? []);
 
         // Clean out all empty data-portlets
-        foreach ($data['data-portlets'] as $key => $portlet) {
+        foreach ($data['data-portlets'] ?? [] as $key => $portlet) {
             if (empty($portlet['array-links']) && empty($portlet['array-sections']) ) {
                 unset($data['data-portlets'][$key]);
             }
