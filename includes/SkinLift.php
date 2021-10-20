@@ -112,14 +112,14 @@ class SkinLift extends SkinMustache {
         unset($data['data-portlets']['data-navigation']['array-links']);
         
         // Move edit to actions portlet
-        foreach ($data['data-portlets']['data-views']['array-links'] as $key => $link) {
+        foreach ($data['data-portlets']['data-views']['array-links'] ?? [] as $key => $link) {
             if (in_array(key($data['data-portlets']['data-views']['array-links'][$key]), ['ve-edit', 'edit'])) {
                 array_unshift($data['data-portlets']['data-actions']['array-links'], $link);
                 unset($data['data-portlets']['data-views']['array-links'][$key]);
             }
         } unset($key); unset($link);
         // Undo the key order effects of the above unset on the key
-        $data['data-portlets']['data-views']['array-links'] = array_values($data['data-portlets']['data-views']['array-links']);
+        $data['data-portlets']['data-views']['array-links'] = array_values($data['data-portlets']['data-views']['array-links'] ?? []);
 
         // Move login/logout to own portlet
         $data['data-portlets']['data-login'] = [
