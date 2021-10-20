@@ -1,7 +1,9 @@
 {
 	"@metadata": {
-		"authors": [ "..." ]
+		"authors": [
+		    "Loren Maxwell"
+		]
 	},
-	"skinname-example": "Example",
-	"example-desc": "An example skin showcasing the best practices"
+	"skinname-lift": "Lift skin",
+	"lift-desc": "Lift skin"
 }
