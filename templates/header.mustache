@@ -24,7 +24,7 @@
                       <ul class="dropdown-menu" aria-labelledby="{{id}}">
                           {{#array-sections}}
                                 <li><span class="dropdown-header bg-light fs-6 fw-bold">{{label}}</span></li>
-                                {{#array-links}}<li><a id="{{id}}" class="dropdown-item{{#class}} {{.}}{{/class}}" href="{{href}}">{{text}}</a></li>{{/array-links}}
+                                {{#array-links}}{{#each .}}<li><a id="{{id}}" class="dropdown-item{{#class}} {{.}}{{/class}}" href="{{href}}">{{text}}</a></li>{{/each}}{{/array-links}}
                           {{/array-sections}}
                       </ul>
                     </div>
@@ -107,46 +107,48 @@
 </header>
 <!-- header ends -->
 
-<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="membersOnline" aria-labelledby="membersOnlineLabel">
-   <div class="offcanvas-header">
-      <h3 class="offcanvas-title" id="membersOnlineLabel">Members online</h3>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-   </div>
-   <div class="offcanvas-body">
-      {{#data-extension-portlets.data-online}}
-      <div class="card border-primary">
-         <div class="card-header bg-primary text-white">Currently online (past five minutes)</div>
-         <ul class="list-group list-group-flush ms-0">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-               <span><i class="fas fa-users fa-fw"></i> Members</span>
-               <span>{{online}}</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-               <span><i class="fal fa-users fa-fw"></i> Guests</span>
-               <span>{{guests}}</span>
-            </li>
-         </ul>
-         <div class="card-header bg-primary text-white">Members currently online</div>
-         <ul  class="list-group list-group-flush m-0">
-            {{#members.array-currently}}
-            <li class="list-group-item">
-               <div><a href="{{user_page}}">{{user_name}}</a></div>
-               <div class="text-muted fst-italic fs-xs" aria-hidden="true">Started a session {{online_since}}</div>
-               <div class="text-muted fst-italic fs-xs">Last viewed <a href="{{lastLinkURL}}">{{lastPageTitle}}</a> {{ago}}</div>
-            </li >
-            {{/members.array-currently}}
-         </ul >
-         <div class="card-header bg-primary text-white">Members recently online (last 24 hours)</div>
-         <div class="list-group">
-            {{#members.array-recently}}
-            <li class="list-group-item">
-               <div><a href="{{user_page}}">{{user_name}}</a></div>
-               <div class="text-muted fst-italic fs-xs" aria-hidden="true">Ended a session {{offline_since}}</div>
-               <div class="text-muted fst-italic fs-xs">Last viewed <a href="{{lastLinkURL}}">{{lastPageTitle}}</a> {{ago}}</div>
-            </li >
-            {{/members.array-recently}}
-         </div>
-      </div>
-      {{/data-extension-portlets.data-online}}
-   </div>
-</div>
+{{#if data-extension-portlets.data-online}}
+    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="membersOnline" aria-labelledby="membersOnlineLabel">
+       <div class="offcanvas-header">
+          <h3 class="offcanvas-title" id="membersOnlineLabel">Members online</h3>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+       </div>
+       <div class="offcanvas-body">
+          {{#data-extension-portlets.data-online}}
+          <div class="card border-primary">
+             <div class="card-header bg-primary text-white">Currently online (past five minutes)</div>
+             <ul class="list-group list-group-flush ms-0">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                   <span><i class="fas fa-users fa-fw"></i> Members</span>
+                   <span>{{online}}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                   <span><i class="fal fa-users fa-fw"></i> Guests</span>
+                   <span>{{guests}}</span>
+                </li>
+             </ul>
+             <div class="card-header bg-primary text-white">Members currently online</div>
+             <ul  class="list-group list-group-flush m-0">
+                {{#members.array-currently}}
+                <li class="list-group-item">
+                   <div><a href="{{user_page}}">{{user_name}}</a></div>
+                   <div class="text-muted fst-italic fs-xs" aria-hidden="true">Started a session {{online_since}}</div>
+                   <div class="text-muted fst-italic fs-xs">Last viewed <a href="{{lastLinkURL}}">{{lastPageTitle}}</a> {{ago}}</div>
+                </li >
+                {{/members.array-currently}}
+             </ul >
+             <div class="card-header bg-primary text-white">Members recently online (last 24 hours)</div>
+             <div class="list-group">
+                {{#members.array-recently}}
+                <li class="list-group-item">
+                   <div><a href="{{user_page}}">{{user_name}}</a></div>
+                   <div class="text-muted fst-italic fs-xs" aria-hidden="true">Ended a session {{offline_since}}</div>
+                   <div class="text-muted fst-italic fs-xs">Last viewed <a href="{{lastLinkURL}}">{{lastPageTitle}}</a> {{ago}}</div>
+                </li >
+                {{/members.array-recently}}
+             </div>
+          </div>
+          {{/data-extension-portlets.data-online}}
+       </div>
+    </div>
+{{/if}}
