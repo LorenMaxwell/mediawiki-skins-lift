@@ -31,6 +31,9 @@ class SkinLift extends SkinMustache {
       return $merged;
     }
 
+	/**
+	 * setTemplateVariable function
+	 */
 	public function setTemplateVariable( $value ) {
 		$this->additionalTemplateData = $this->array_merge_recursive_distinct($this->additionalTemplateData, $value);
 	}
@@ -47,7 +50,8 @@ class SkinLift extends SkinMustache {
 		    
 		    $item['text'] ??= (!is_int($key) ? wfMessage( $key )->text() : '');
             $className = $item['class'] ?? [];
-            $isSelected = is_array( $className ) ? in_array( 'selected', $className )
+            $isSelected = is_array( $className )
+                ? in_array( 'selected', $className )
                 : $className === 'selected';
 
 		    if ( $isSelected ) {
@@ -71,8 +75,6 @@ class SkinLift extends SkinMustache {
 		return $data;
 	}
 
-
-	
     /**
      * Extends the getTemplateData function
      */
