@@ -48,7 +48,7 @@ class SkinLift extends SkinMustache {
 		// Sanitize and standardize links
 		foreach ( $urls ?? [] as $key => $item ) {
 		    
-		    $item['text'] ??= (!is_int($key) ? wfMessage( $key )->text() : '');
+		    $item['text'] = (!is_int($key) ? wfMessage( $key )->text() : '');
             $className = $item['class'] ?? [];
             $isSelected = is_array( $className )
                 ? in_array( 'selected', $className )
