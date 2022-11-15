@@ -8,7 +8,7 @@
 	"license-name": "CC0-1.0",
 	"type": "skin",
 	"requires": {
-		"MediaWiki": ">= 1.36.0"
+		"MediaWiki": ">= 1.37.0"
 	},
 	"ValidSkinNames": {
 		"lift": {
@@ -16,7 +16,6 @@
 			"args": [ {
 				"name": "Lift",
 				"responsive" : true,
-				"templateDirectory": "skins/Lift/templates",
 				"messages": [
 				],
 				"styles": [
